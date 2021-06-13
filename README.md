@@ -1,9 +1,46 @@
-For NonJava languages:
+# Snake Battle
+
+## About game
+You have to write a snake bot that will beat other bots by points. All players play on the same field. Snake can move to empty cells in four directions but cannot move to the previous cell.
+
+On its path, a snake can encounter stones, gold, fury pills, flying pills, apples or other snakes. If the snake eats a stone, it becomes shorter by 4 cells. If its length is less than 2, it dies. For gold, apples and dead competitors the snake gets bonus points. For its own death and eaten stones, the snake gets demerit points. The points are summed up.
+
+The player with most points when time expires wins. A dead snake immediately vanishes and reappears on one of the respawn cells, waiting for the next round (start event).
+
+**Negative impact:**
+- Snake that hits a wall, dies.
+- Snake that hits another snake, dies.
+- Snake must be at least two cells long or it dies.
+- Snake that eats a stone becomes three cells shorter, and, if that makes it shorter than two cells - it dies.
+
+**Positive impact:**
+- Snake that eats an apple becomes longer by one cell.
+- Snake that eats a flying pill flies over stones and other snakes for 10 moves.
+- Snake that eats a fury pill can bite off parts of other snakes and eat stones without negative effects for 10 moves.
+- Snake that eats gold gets bonus points.
+
+**Exceptional cases:**
+- Snakes can bite off their own tails, becoming shorter without any negative effects.
+- If two snakes collide head-on, the shortest snake dies. The surviving snake becomes shorter - by the length of the dead one (if that makes it shorter than two cells, it dies as well).
+- The bitten off part of the tail always disappears, and the snake is shortened.
+- If two snakes, one of which is under the flying pill, collide, nothing happens.
+- If two snakes collide, the under the fury pill always wins.
+- If two furious snakes collide, common collision rules are used.
+
+*Good luck and let the smartest ass win!*
+
+## Field:
+
+![Field example](field.png)
+
+# Setup
+
+## For NonJava languages:
 - please go to .\src\main\<language>
 - chose your language
 - and follow README.md instructions
 
-For Java:
+## For Java:
 - setup Java (JDK 11)
     + setup JAVA_HOME variable
 - setup Maven3
