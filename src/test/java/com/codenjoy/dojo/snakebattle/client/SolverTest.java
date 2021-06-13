@@ -24,16 +24,11 @@ package com.codenjoy.dojo.snakebattle.client;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.codenjoy.dojo.services.Direction.RIGHT;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * @author K.ilya
@@ -44,13 +39,11 @@ import static org.mockito.Mockito.when;
 
 public class SolverTest {
 
-    private Dice dice;
-    private Solver ai;
+    private Solver<Board> ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
-        ai = new YourSolver(dice);
+        ai = new YourSolver();
     }
 
     private Board board(String board) {
@@ -96,12 +89,8 @@ public class SolverTest {
                 "☼☼☼☼☼☼☼☼", Direction.RIGHT);
     }
 
-    private void asertAI(String board, Direction expected) {
+    private void asertAI(String board, @SuppressWarnings("SameParameterValue") Direction expected) {
         String actual = ai.get(board(board));
         assertEquals(expected.toString(), actual);
-    }
-
-    private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
     }
 }

@@ -23,11 +23,9 @@ package com.codenjoy.dojo.snakebattle.client;
  */
 
 
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.client.WebSocketRunner;
-import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.RandomDice;
+import com.codenjoy.dojo.snakebattle.ai.SnakeAi;
 
 /**
  * User: your name
@@ -37,27 +35,25 @@ import com.codenjoy.dojo.services.RandomDice;
  */
 public class YourSolver implements Solver<Board> {
 
-    private Dice dice;
-    private Board board;
+    private final SnakeAi ai;
 
-    public YourSolver(Dice dice) {
-        this.dice = dice;
+    public YourSolver() {
+        this.ai = new SnakeAi();
     }
 
     @Override
     public String get(Board board) {
-        this.board = board;
         if (board.isGameOver()) return "";
 
-        return Direction.RIGHT.toString();
+        return ai.move(board).toString();
     }
 
     public static void main(String[] args) {
         WebSocketRunner.runClient(args,
                 // paste here board page url from browser after registration
                 // or put it as command line parameter
-                "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789",
-                new YourSolver(new RandomDice()),
+                "https://dojorena.io/codenjoy-contest/board/player/dojorena574?code=3176254109683370681",
+                new YourSolver(),
                 new Board());
     }
 
